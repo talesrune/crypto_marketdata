@@ -9,14 +9,13 @@
     "dev": "rsbuild dev --open",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "preview": "rsbuild preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "rsbuild preview"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.17.0",
     "@emotion/react": "^11.14.0",
     "@fontsource/outfit": "^5.2.5",
+    "axios": "^1.9.0",
     "gh-pages": "^6.3.0",
     "next-themes": "^0.4.6",
     "react": "^18.3.1",
