@@ -36,31 +36,31 @@ const App = () => {
   }
   return (
     <div className="content">
-      <Box textAlign="center" fontSize="xl" pt="30vh" textStyle="body">
+      <Box textAlign="center" pt="30vh" textStyle="body">
         <VStack gap="8">
           <Heading hidden size="2xl" letterSpacing="tight">
             Welcome to Chakra UI v3 + Vite
           </Heading>
           <div style={{ width: '40%', minWidth: '300px' }}>
-            <Input placeholder="Type here..." />
-          <Button onClick={callApi} colorScheme="teal" variant="solid">call</Button>
+            <Input size={'2xl'} textStyle={'2xl'} placeholder="Type here..." />
+          <Button size={'2xl'} onClick={callApi} colorScheme="teal" variant="solid">call</Button>
           <Stack gap="10">
-            <Table.Root key={'sm'} size={'sm'}>
+            <Table.Root key={'lg'} size={'lg'}>
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeader style={{color:'#71717a'}} borderBottomColor={'bg'}>Name</Table.ColumnHeader>
+                  <Table.ColumnHeader textStyle={'2xl'} style={{color:'#71717a'}} borderBottomColor={'bg'}>Name</Table.ColumnHeader>
                   {/* <For each={[1, 2, 3, 4, 5, 6]}>
                     {() => <Table.ColumnHeader borderBottomColor={'bg'}/>}
                   </For> */}
-                  <Table.ColumnHeader style={{color:'#71717a'}} borderBottomColor={'bg'} textAlign="end">Price</Table.ColumnHeader>
+                  <Table.ColumnHeader textStyle={'2xl'} style={{color:'#71717a'}} borderBottomColor={'bg'} textAlign="end">Price</Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
                 {items.map((item) => (
                   <Table.Row key={item.id}>
-                    <Table.Cell borderBottomColor={'bg'}>{item.name}</Table.Cell>
+                    <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'}>{item.name}</Table.Cell>
                     {/* <For each={[1, 2, 3, 4, 5, 6]}>{() => <Table.Cell borderBottomColor={'bg'} />}</For> */}
-                    <Table.Cell borderBottomColor={'bg'} textAlign="end">{item.price}</Table.Cell>
+                    <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'} textAlign="end">{item.price}</Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
