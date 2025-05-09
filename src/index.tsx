@@ -4,7 +4,6 @@ import App from './App';
 import '@fontsource/outfit'; // Import the Outfit font
 import {
   ChakraProvider,
-  defaultSystem,
   defineTextStyles,
   createSystem,
   defineConfig,
