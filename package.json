@@ -11,8 +11,13 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.17.0",
+    "@emotion/react": "^11.14.0",
+    "@fontsource/outfit": "^5.2.5",
+    "next-themes": "^0.4.6",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
