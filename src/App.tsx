@@ -1,15 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import './App.css';
-import { Box, Button, VStack, Input, Stack, Table } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  VStack,
+  Input,
+  Stack,
+  Table,
+  Pagination,
+  ButtonGroup,
+  IconButton,
+} from '@chakra-ui/react';
 import data from './assets/namelist.json'; // Import the JSON file
-import { binanceCryptoIcons } from 'binance-icons';
-import parse from 'html-react-parser';
+import RowDetails from './components/RowDetails';
 
 const App = () => {
-  const checkIcon = (symbol: string) => {
-    return binanceCryptoIcons.has(symbol);
-  };
   const callApi = async () => {
     await axios
       .get(
@@ -42,6 +49,13 @@ const App = () => {
   const [items, setItems] = useState(data);
   const [filteredItems, setFilteredItems] = useState(items);
   const [searchTerm, setSearchTerm] = useState(''); // Search term
+  const [page, setPage] = useState(1);
+
+  const pageSize = 20; // Number of items per page
+  const startRange = (page - 1) * pageSize;
+  const endRange = startRange + pageSize;
+
+  const visibleItems = filteredItems.slice(startRange, endRange);
 
   const filterItems = (items: any[], searchTerm: string) => {
     return items.filter(
@@ -54,6 +68,9 @@ const App = () => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
 
+    //every time the input changes, set the page to 1
+    setPage(1);
+    
     // Filter items based on name or symbol
     const itemsToFilter = filterItems(items, value);
     setFilteredItems(itemsToFilter);
@@ -80,14 +97,14 @@ const App = () => {
               value={searchTerm}
               onChange={handleSearch}
             />
-            <Button
+            {/* <Button
               size={'2xl'}
               onClick={callApi}
               colorScheme="teal"
               variant="solid"
             >
               call
-            </Button>
+            </Button> */}
             <Stack gap="10">
               <Table.Root key={'lg'} size={'lg'}>
                 <Table.Header>
@@ -112,35 +129,39 @@ const App = () => {
                     </Table.ColumnHeader>
                   </Table.Row>
                 </Table.Header>
-                <Table.Body>
-                  {filteredItems.map((item, index) => (
-                    <Table.Row key={item.name + index}>
-                      <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'}>
-                        <Box display="flex" alignItems="center" gap={2}>
-                          {checkIcon(item.symbol.toLowerCase()) && (
-                            <div style={{ width: '32px', height: '32px' }}>
-                              {parse(
-                                binanceCryptoIcons.get(
-                                  item.symbol.toLowerCase(),
-                                ) as string,
-                              )}
-                            </div>
-                          )}
-                          {item.name}
-                        </Box>
-                      </Table.Cell>
-                      <Table.Cell
-                        textStyle={'2xl'}
-                        borderBottomColor={'bg'}
-                        textAlign="end"
-                      >
-                        {item.price}
-                      </Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table.Body>
+                <RowDetails visibleItems={visibleItems} />
               </Table.Root>
             </Stack>
+            <Pagination.Root
+              count={filteredItems.length}
+              pageSize={pageSize}
+              page={page}
+              onPageChange={(e) => setPage(e.page)}
+            >
+              <ButtonGroup variant="ghost" size="sm">
+                <Pagination.PrevTrigger asChild>
+                  <IconButton>
+                    <HiChevronLeft />
+                  </IconButton>
+                </Pagination.PrevTrigger>
+
+                <Pagination.Items
+                  render={(page) => (
+                    <IconButton
+                      variant={{ base: 'ghost', _selected: 'outline' }}
+                    >
+                      {page.value}
+                    </IconButton>
+                  )}
+                />
+
+                <Pagination.NextTrigger asChild>
+                  <IconButton>
+                    <HiChevronRight />
+                  </IconButton>
+                </Pagination.NextTrigger>
+              </ButtonGroup>
+            </Pagination.Root>
           </div>
         </VStack>
       </Box>
