@@ -140,8 +140,8 @@
     "price": 0.0
   },
   {
-    "symbol": "NEARNEAR ",
-    "name": "Protocol",
+    "symbol": "NEAR",
+    "name": "NEAR Protocol",
     "price": 0.0
   },
   {
@@ -385,8 +385,8 @@
     "price": 0.0
   },
   {
-    "symbol": "PAXGPAX ",
-    "name": "Gold",
+    "symbol": "PAXG",
+    "name": "PAX Gold",
     "price": 0.0
   },
   {
@@ -545,8 +545,8 @@
     "price": 0.0
   },
   {
-    "symbol": "FTTFTX ",
-    "name": "Token",
+    "symbol": "FTT",
+    "name": "FTX Token",
     "price": 0.0
   },
   {
@@ -965,8 +965,8 @@
     "price": 0.0
   },
   {
-    "symbol": "SKLSKALE ",
-    "name": "Network",
+    "symbol": "SKL",
+    "name": "SKALE Network",
     "price": 0.0
   },
   {
@@ -1150,8 +1150,8 @@
     "price": 0.0
   },
   {
-    "symbol": "SSVSSV ",
-    "name": "Token",
+    "symbol": "SSV",
+    "name": "SSV Token",
     "price": 0.0
   },
   {
@@ -1555,8 +1555,8 @@
     "price": 0.0
   },
   {
-    "symbol": "ARPAARPA ",
-    "name": "Network",
+    "symbol": "ARPA",
+    "name": "ARPA Network",
     "price": 0.0
   },
   {
@@ -1575,8 +1575,8 @@
     "price": 0.0
   },
   {
-    "symbol": "BARFC ",
-    "name": "Barcelona Fan Token BAR",
+    "symbol": "BAR",
+    "name": "FC Barcelona Fan Token BAR",
     "price": 0.0
   },
   {
@@ -1715,8 +1715,8 @@
     "price": 0.0
   },
   {
-    "symbol": "BROCCOLI714CZ'S ",
-    "name": "Dog (broccoli.ngo)",
+    "symbol": "BROCCOLI714",
+    "name": "CZ'S Dog (broccoli.ngo)",
     "price": 0.0
   },
   {
@@ -1860,8 +1860,8 @@
     "price": 0.0
   },
   {
-    "symbol": "PORTOFC ",
-    "name": "Porto Fan Token",
+    "symbol": "PORTO",
+    "name": "FC Porto Fan Token",
     "price": 0.0
   },
   {
@@ -1880,8 +1880,8 @@
     "price": 0.0
   },
   {
-    "symbol": "OGOG ",
-    "name": "Fan Token",
+    "symbol": "OG",
+    "name": "OG Fan Token",
     "price": 0.0
   },
   {
@@ -1920,8 +1920,8 @@
     "price": 0.0
   },
   {
-    "symbol": "LTOLTO ",
-    "name": "Network",
+    "symbol": "LTO",
+    "name": "LTO Network",
     "price": 0.0
   },
   {
@@ -1930,8 +1930,8 @@
     "price": 0.0
   },
   {
-    "symbol": "REIREI ",
-    "name": "Network",
+    "symbol": "REI",
+    "name": "REI Network",
     "price": 0.0
   },
   {
@@ -1950,8 +1950,8 @@
     "price": 0.0
   },
   {
-    "symbol": "FIOFIO ",
-    "name": "Protocol",
+    "symbol": "FIO",
+    "name": "FIO Protocol",
     "price": 0.0
   },
   {
@@ -1965,8 +1965,8 @@
     "price": 0.0
   },
   {
-    "symbol": "ASRAS ",
-    "name": "Roma Fan Token",
+    "symbol": "ASR",
+    "name": "AS Roma Fan Token",
     "price": 0.0
   },
   {
@@ -1975,8 +1975,8 @@
     "price": 0.0
   },
   {
-    "symbol": "ACMAC ",
-    "name": "Milan Fan Token",
+    "symbol": "ACM",
+    "name": "AC Milan Fan Token",
     "price": 0.0
   },
   {
