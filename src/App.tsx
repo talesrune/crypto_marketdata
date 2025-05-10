@@ -15,12 +15,23 @@ import {
 } from '@chakra-ui/react';
 import data from './assets/namelist.json'; // Import the JSON file
 import RowDetails from './components/RowDetails';
+import { useQuery } from '@tanstack/react-query';
 
 const App = () => {
+  // const queryClient = useQueryClient()
   const callApi = async () => {
+    const symbolsForApi = visibleItems
+      .filter((item) => item.disable === undefined)
+      .map((item) => `${item.symbol}USDT`);
+    // Convert the array to the required format for the API
+    // const symbolsParam = JSON.stringify(symbolsForApi);
+    const symbolsParam = `[${symbolsForApi.map((symbol) => `"${symbol}"`).join(',')}]`;
+    console.log(symbolsParam); // Output: ["BTCUSDT","SOLUSDT"]
+
     await axios
       .get(
-        'https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","SOLUSDT"]',
+        `https://api.binance.com/api/v3/ticker/price?symbols=${symbolsParam}`,
+        // 'https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","SOLUSDT"]',
         { timeout: 5000 },
       )
       .then((resp) => {
@@ -31,6 +42,9 @@ const App = () => {
         resp.data.map((item: any) => {
           const symbol = item.symbol.split('USDT')[0];
           const target = newItems.find((obj: any) => symbol === obj.symbol);
+
+          console.log('symbol', symbol);
+          console.log('target', target);
 
           const source = {
             ...target,
@@ -45,6 +59,12 @@ const App = () => {
         console.log(error);
       });
   };
+
+  const { refetch } = useQuery({
+    queryKey: ['getpriceData'],
+    queryFn: callApi,
+  });
+  // console.log(result.data);
 
   const [items, setItems] = useState(data);
   const [filteredItems, setFilteredItems] = useState(items);
@@ -84,6 +104,10 @@ const App = () => {
       setFilteredItems(itemsToFilter);
     }
   }, [items]);
+
+  useEffect(() => {
+    refetch();
+  }, [page]);
 
   return (
     <div className="content">

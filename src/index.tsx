@@ -10,6 +10,7 @@ import {
   defaultConfig,
 } from '@chakra-ui/react';
 import { ThemeProvider } from 'next-themes';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 const textStyles = defineTextStyles({
   body: {
@@ -35,12 +36,16 @@ if (rootEl) {
       textStyles,
     },
   });
+  // Create a client
+  const queryClient = new QueryClient();
 
   root.render(
     <React.StrictMode>
       <ChakraProvider value={createSystem(defaultConfig, config)}>
         <ThemeProvider attribute="class" disableTransitionOnChange>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </ThemeProvider>
       </ChakraProvider>
     </React.StrictMode>,

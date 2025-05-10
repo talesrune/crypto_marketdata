@@ -10,9 +10,10 @@
     "price": 0.0
   },
   {
+    "disable":true,
     "symbol": "USDT",
     "name": "TetherUS",
-    "price": 0.0
+    "price": 1.0
   },
   {
     "symbol": "XRP",
@@ -30,9 +31,10 @@
     "price": 0.0
   },
   {
+    "disable":true,
     "symbol": "USDC",
     "name": "USDC",
-    "price": 0.0
+    "price": 1.0
   },
   {
     "symbol": "DOGE",
@@ -110,9 +112,10 @@
     "price": 0.0
   },
   {
+    "disable":true,
     "symbol": "DAI",
     "name": "Dai",
-    "price": 0.0
+    "price": 1.0
   },
   {
     "symbol": "PEPE",
@@ -445,8 +448,8 @@
     "price": 0.0
   },
   {
-    "symbol": "RUNETHOR",
-    "name": "Chain",
+    "symbol": "RUNE",
+    "name": "THOR Chain",
     "price": 0.0
   },
   {
@@ -460,8 +463,8 @@
     "price": 0.0
   },
   {
-    "symbol": "DYD",
-    "name": "XdYdX",
+    "symbol": "DYDX",
+    "name": "dYdX",
     "price": 0.0
   },
   {
@@ -500,8 +503,8 @@
     "price": 0.0
   },
   {
-    "symbol": "XE",
-    "name": "CeCash",
+    "symbol": "XEC",
+    "name": "eCash",
     "price": 0.0
   },
   {
@@ -620,8 +623,8 @@
     "price": 0.0
   },
   {
-    "symbol": "1MBABYDOGE1M",
-    "name": " x BABYDOGE",
+    "symbol": "1MBABYDOGE",
+    "name": "1M x BABYDOGE",
     "price": 0.0
   },
   {
@@ -630,8 +633,8 @@
     "price": 0.0
   },
   {
-    "symbol": "1000CHEEMS1000",
-    "name": "*cheems.pet",
+    "symbol": "1000CHEEMS",
+    "name": "1000*cheems.pet",
     "price": 0.0
   },
   {
@@ -705,8 +708,8 @@
     "price": 0.0
   },
   {
-    "symbol": "Z",
-    "name": "KzkSync",
+    "symbol": "ZK",
+    "name": "zkSync",
     "price": 0.0
   },
   {
@@ -825,8 +828,8 @@
     "price": 0.0
   },
   {
-    "symbol": "YF",
-    "name": "Iyearn.finance",
+    "symbol": "YFI",
+    "name": "yearn.finance",
     "price": 0.0
   },
   {
@@ -845,8 +848,8 @@
     "price": 0.0
   },
   {
-    "symbol": "AIXB",
-    "name": "Taixbt by Virtuals",
+    "symbol": "AIXBT",
+    "name": "aixbt by Virtuals",
     "price": 0.0
   },
   {
@@ -885,8 +888,8 @@
     "price": 0.0
   },
   {
-    "symbol": "ETHF",
-    "name": "Iether.fi",
+    "symbol": "ETHFI",
+    "name": "ether.fi",
     "price": 0.0
   },
   {
@@ -1175,8 +1178,8 @@
     "price": 0.0
   },
   {
-    "symbol": "1000SATS1000*SATS (",
-    "name": "Ordinals)",
+    "symbol": "1000SATS",
+    "name": "1000*SATS (Ordinals)",
     "price": 0.0
   },
   {
@@ -1255,8 +1258,8 @@
     "price": 0.0
   },
   {
-    "symbol": "1000CAT1000*",
-    "name": "Simons Cat",
+    "symbol": "1000CAT",
+    "name": "1000*Simons Cat",
     "price": 0.0
   },
   {
@@ -1265,8 +1268,8 @@
     "price": 0.0
   },
   {
-    "symbol": "RL",
-    "name": "CiExecRLC",
+    "symbol": "RLC",
+    "name": "iExecRLC",
     "price": 0.0
   },
   {
@@ -1510,8 +1513,8 @@
     "price": 0.0
   },
   {
-    "symbol": "WINWI",
-    "name": "NkLink",
+    "symbol": "WIN",
+    "name": "WINkLink",
     "price": 0.0
   },
   {
@@ -1570,8 +1573,8 @@
     "price": 0.0
   },
   {
-    "symbol": "D",
-    "name": "FdForce",
+    "symbol": "DF",
+    "name": "dForce",
     "price": 0.0
   },
   {
@@ -1695,8 +1698,8 @@
     "price": 0.0
   },
   {
-    "symbol": "NFPNF",
-    "name": "Prompt Token",
+    "symbol": "NFP",
+    "name": "NFPrompt Token",
     "price": 0.0
   },
   {
@@ -1830,8 +1833,8 @@
     "price": 0.0
   },
   {
-    "symbol": "UT",
-    "name": "KxMoney",
+    "symbol": "UTK",
+    "name": "xMoney",
     "price": 0.0
   },
   {
