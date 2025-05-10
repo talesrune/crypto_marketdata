@@ -17,6 +17,9 @@ import {
   Table,
 } from '@chakra-ui/react';
 import data from './assets/namelist.json'; // Import the JSON file
+import { binanceCryptoIcons, binanceEtfIcons, binanceCurrencyIcons } from 'binance-icons'
+import parse from 'html-react-parser';
+
 
 // const items = [
 //   { name: 'Bitcoin', price: 100000.99 },
@@ -26,6 +29,9 @@ import data from './assets/namelist.json'; // Import the JSON file
 const items = data
 const App = () => {
 
+  const checkIcon = (symbol:string) => { 
+    return binanceCryptoIcons.has(symbol) 
+  }
   const callApi = async () => {
     await axios.get("https://api.binance.com/api/v3/ticker/price?symbols=%5B%22BTCUSDT%22,%22BNBUSDT%22%5D", {timeout:5000}).then(resp => {
     // await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT", {timeout:5000}).then(resp => {
@@ -58,9 +64,14 @@ const App = () => {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {items.map((item) => (
-                  <Table.Row key={item.id}>
-                    <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'}>{item.name}</Table.Cell>
+                {items.map((item, index) => (
+                  <Table.Row key={item.name + index}>
+                    <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'}>
+                      <Box display="flex" alignItems="center" gap={2}>
+                         {checkIcon(item.symbol.toLowerCase()) && parse(binanceCryptoIcons.get(item.symbol.toLowerCase()) as string)}
+                        {item.name}
+                      </Box>
+                    </Table.Cell>
                     {/* <For each={[1, 2, 3, 4, 5, 6]}>{() => <Table.Cell borderBottomColor={'bg'} />}</For> */}
                     <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'} textAlign="end">{item.price}</Table.Cell>
                   </Table.Row>
