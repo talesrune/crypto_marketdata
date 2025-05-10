@@ -1,36 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
-import {
-  Box,
-  Button,
-  Checkbox,
-  ClientOnly,
-  HStack,
-  Heading,
-  Progress,
-  RadioGroup,
-  Skeleton,
-  VStack,
-  Input,
-  Stack,
-  For,
-  Table,
-} from '@chakra-ui/react';
+import { Box, Button, VStack, Input, Stack, Table } from '@chakra-ui/react';
 import data from './assets/namelist.json'; // Import the JSON file
-import {
-  binanceCryptoIcons,
-  binanceEtfIcons,
-  binanceCurrencyIcons,
-} from 'binance-icons';
+import { binanceCryptoIcons } from 'binance-icons';
 import parse from 'html-react-parser';
-
-// const items = [
-//   { name: 'Bitcoin', price: 100000.99 },
-//   { name: 'Ethereum', price: 49.99 },
-//   { name: 'Solana', price: 171.12 },
-// ];
-// const items = data;
 
 const App = () => {
   const checkIcon = (symbol: string) => {
@@ -39,7 +13,7 @@ const App = () => {
   const callApi = async () => {
     await axios
       .get(
-        'https://api.binance.com/api/v3/ticker/price?symbols=%5B%22BTCUSDT%22,%22BNBUSDT%22%5D',
+        'https://api.binance.com/api/v3/ticker/price?symbols=["BTCUSDT","SOLUSDT"]',
         { timeout: 5000 },
       )
       .then((resp) => {
@@ -49,19 +23,13 @@ const App = () => {
         const newItems = JSON.parse(JSON.stringify(items));
         resp.data.map((item: any) => {
           const symbol = item.symbol.split('USDT')[0];
-          const target = newItems.find((obj:any) => symbol === obj.symbol);
+          const target = newItems.find((obj: any) => symbol === obj.symbol);
 
           const source = {
             ...target,
             price: Number(item.price),
           };
           Object.assign(target, source); //it replaces the object in the array
-
-          // return {
-          //   symbol: item.symbol,
-          //   name: 'bitcoin',
-          //   price: Number(item.price),
-          // };
         });
         setItems(newItems);
       })
@@ -76,9 +44,10 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState(''); // Search term
 
   const filterItems = (items: any[], searchTerm: string) => {
-    return items.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+    return items.filter(
+      (item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.symbol.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   };
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,8 +60,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    if(searchTerm === '') {
-      setFilteredItems(items)
+    if (searchTerm === '') {
+      setFilteredItems(items);
     } else {
       const itemsToFilter = filterItems(items, searchTerm);
       setFilteredItems(itemsToFilter);
@@ -103,7 +72,7 @@ const App = () => {
     <div className="content">
       <Box textAlign="center" pt="30vh" textStyle="body">
         <VStack gap="8">
-          <div style={{ width: '40%', minWidth: '300px' }}>
+          <div style={{ width: '40%', minWidth: '410px' }}>
             <Input
               size={'2xl'}
               textStyle={'2xl'}
