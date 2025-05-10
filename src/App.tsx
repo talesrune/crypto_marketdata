@@ -16,12 +16,14 @@ import {
   For,
   Table,
 } from '@chakra-ui/react';
+import data from './assets/namelist.json'; // Import the JSON file
 
-const items = [
-  { id: 1, name: 'Bitcoin', price: 100000.99 },
-  { id: 2, name: 'Ethereum', price: 49.99 },
-  { id: 3, name: 'Solana', price: 171.12 },
-];
+// const items = [
+//   { name: 'Bitcoin', price: 100000.99 },
+//   { name: 'Ethereum', price: 49.99 },
+//   { name: 'Solana', price: 171.12 },
+// ];
+const items = data
 const App = () => {
 
   const callApi = async () => {
