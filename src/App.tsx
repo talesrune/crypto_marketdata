@@ -51,7 +51,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState(''); // Search term
   const [page, setPage] = useState(1);
 
-  const pageSize = 20; // Number of items per page
+  const pageSize = 14; // Number of items per page
   const startRange = (page - 1) * pageSize;
   const endRange = startRange + pageSize;
 
@@ -70,7 +70,7 @@ const App = () => {
 
     //every time the input changes, set the page to 1
     setPage(1);
-    
+
     // Filter items based on name or symbol
     const itemsToFilter = filterItems(items, value);
     setFilteredItems(itemsToFilter);
