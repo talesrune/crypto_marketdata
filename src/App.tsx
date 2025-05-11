@@ -22,6 +22,7 @@ import {
   TiArrowSortedDown,
   TiRefresh,
 } from 'react-icons/ti';
+import { useSwipeable } from 'react-swipeable';
 
 const App = () => {
   // const queryClient = useQueryClient()
@@ -138,6 +139,17 @@ const App = () => {
     }
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      // console.log(filteredItems.length/pageSize )
+      // console.log(page)
+      return (page < filteredItems.length/pageSize) ? setPage((prev) => prev + 1) : console.log('no next page')
+    },
+    onSwipedRight: () => (page !== 1) ? setPage((prev) => prev - 1) : console.log('no previous page'),
+    swipeDuration: 500,
+    preventScrollOnSwipe: true,
+    trackMouse: true
+  });
   useEffect(() => {
     if (searchTerm === '') {
       // console.log('sortByNameOrder', sortByNameOrder);
@@ -303,7 +315,7 @@ const App = () => {
                     </Table.ColumnHeader>
                   </Table.Row>
                 </Table.Header>
-                <RowDetails visibleItems={visibleItems} />
+                <RowDetails visibleItems={visibleItems} handlers={handlers} />
               </Table.Root>
             </Stack>
             <Pagination.Root

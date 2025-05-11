@@ -2,12 +2,12 @@ import { Box, Table } from '@chakra-ui/react';
 import { binanceCryptoIcons } from 'binance-icons';
 import parse from 'html-react-parser';
 
-const RowDetails = ({ visibleItems }: { visibleItems: { symbol: string; name: string; price: number }[] }) => {
+const RowDetails = ({ visibleItems, handlers }: { visibleItems: { symbol: string; name: string; price: number }[], handlers:any}) => {
   const checkIcon = (symbol: string) => {
     return binanceCryptoIcons.has(symbol);
   };
   return (
-    <Table.Body>
+    <Table.Body {...handlers}>
       {visibleItems.map((item: any, index: number) => (
         <Table.Row key={item.name + index}>
           <Table.Cell textStyle={'2xl'} borderBottomColor={'bg'}>
