@@ -12,6 +12,8 @@ import {
   ButtonGroup,
   IconButton,
   Heading,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import data from './assets/namelist.json'; // Import the JSON file
 import RowDetails from './components/RowDetails';
@@ -25,7 +27,7 @@ import {
 import { MdOutlineLightbulb } from 'react-icons/md';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { useSwipeable } from 'react-swipeable';
-import { Theme } from '@chakra-ui/react';
+import { TbBrandGithub } from 'react-icons/tb';
 import { ThemeProvider } from 'next-themes';
 
 const App = () => {
@@ -199,6 +201,24 @@ const App = () => {
         <Box textAlign="center" pt="30vh" textStyle="body">
           <VStack gap="8">
             <div style={{ width: '40%', minWidth: '410px' }}>
+              <Box display={'flex'} position="relative" id="box">
+                <LinkBox
+                  marginLeft={'auto'}
+                  marginRight={'0px'}
+                  top={'-265px'}
+                  as="article"
+                  p="5"
+                  borderWidth="1px"
+                  rounded="md"
+                  _hover={{ bg: darkMode ? '#18181b' : '#f4f4f5' }}
+                >
+                  <LinkOverlay href="https://github.com/talesrune/crypto_marketdata">
+                    <Box minWidth={'32px'} height={'32px'} borderRadius="md">
+                      <TbBrandGithub style={{ fontSize: '30px' }} />
+                    </Box>
+                  </LinkOverlay>
+                </LinkBox>
+              </Box>
               {isMobile ? (
                 <Heading
                   color={'gray.600'}
