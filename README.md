@@ -5,22 +5,11 @@ A simple website that shows the current market data of popular cryptocurrencies.
 ![firefox_VQg2byFcth](https://github.com/user-attachments/assets/cd181155-505d-43d6-b19a-c417debdeabf)
 
 
-## Get started
+## Search
 
-Start the dev server:
+## Sort by name or price
 
-```bash
-pnpm dev
-```
+## Mobile version
 
-Build the app for production:
+## Toggle theme
 
-```bash
-pnpm build
-```
-
-Preview the production build locally:
-
-```bash
-pnpm preview
-```
