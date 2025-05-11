@@ -199,7 +199,7 @@ const App = () => {
           <VStack gap="8">
             <div style={{ width: '40%', minWidth: '410px' }}>
               {isMobile ? (
-                <Heading color={'gray.600'} fontFamily={'Outfit'} textAlign={'start'} size="xs">
+                <Heading color={'gray.600'} fontFamily={'Outfit'} textAlign={'start'} size="sm">
                   Psst! You can swipe left and right in mobile
                 </Heading>
               ) : (
