@@ -11,7 +11,7 @@ import {
   Pagination,
   ButtonGroup,
   IconButton,
-  Button,
+  Heading,
 } from '@chakra-ui/react';
 import data from './assets/namelist.json'; // Import the JSON file
 import RowDetails from './components/RowDetails';
@@ -22,7 +22,10 @@ import {
   TiArrowSortedDown,
   TiRefresh,
 } from 'react-icons/ti';
+import { MdOutlineLightbulb } from 'react-icons/md';
+import { HiOutlineLightBulb } from 'react-icons/hi';
 import { useSwipeable } from 'react-swipeable';
+import { Theme } from '@chakra-ui/react';
 
 const App = () => {
   // const queryClient = useQueryClient()
@@ -74,6 +77,19 @@ const App = () => {
   const [filteredItems, setFilteredItems] = useState(items);
   const [searchTerm, setSearchTerm] = useState(''); // Search term
   const [page, setPage] = useState(1);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [darkMode, setDarkMode] = useState(true);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
 
   // sort by name useState
   const [sortByNameOrder, setSortByNameOrder] = useState(0); // 0: default, 1: ascending, 2: descending
@@ -143,12 +159,17 @@ const App = () => {
     onSwipedLeft: () => {
       // console.log(filteredItems.length/pageSize )
       // console.log(page)
-      return (page < filteredItems.length/pageSize) ? setPage((prev) => prev + 1) : console.log('no next page')
+      return page < filteredItems.length / pageSize
+        ? setPage((prev) => prev + 1)
+        : console.log('no next page');
     },
-    onSwipedRight: () => (page !== 1) ? setPage((prev) => prev - 1) : console.log('no previous page'),
+    onSwipedRight: () =>
+      page !== 1
+        ? setPage((prev) => prev - 1)
+        : console.log('no previous page'),
     swipeDuration: 500,
     preventScrollOnSwipe: true,
-    trackMouse: true
+    trackMouse: true,
   });
   useEffect(() => {
     if (searchTerm === '') {
@@ -172,186 +193,213 @@ const App = () => {
   }, [page]);
 
   return (
-    <div className="content">
-      <Box textAlign="center" pt="30vh" textStyle="body">
-        <VStack gap="8">
-          <div style={{ width: '40%', minWidth: '410px' }}>
-            <Box display="flex" alignItems="center" gap={2}>
-              <Input
-                size={'2xl'}
-                textStyle={'2xl'}
-                placeholder="Type here..."
-                value={searchTerm}
-                onChange={handleSearch}
-              />
-              <Box
-                as="button"
-                minWidth={'64px'}
-                height={'64px'}
-                onClick={() => {
-                  refetch();
-                }}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                borderRadius="md"
-                _hover={{ bg: '#18181b' }}
-              >
-                <TiRefresh style={{ fontSize: '40px' }} />{' '}
-                {/* Larger icon size */}
-              </Box>
-            </Box>
-            <Stack gap="10">
-              <Table.Root key={'lg'} size={'lg'}>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.ColumnHeader
-                      textStyle={'2xl'}
-                      style={{ color: '#71717a' }}
-                      borderBottomColor={'bg'}
-                    >
-                      <Box display="flex" alignItems="center" gap={2}>
-                        Name
-                        {sortByNameOrder === 0 && (
-                          <TiArrowUnsorted
-                            onClick={() => {
-                              setTimeout(() => {
-                                refetch();
-                              }, 300);
-                              handleSortByName(0, filteredItems);
-                              setSortByNameOrder(1);
-                              setSortByPriceOrder(0);
-                            }}
-                            style={{ marginTop: '4px' }}
-                            size={'20px'}
-                          />
-                        )}
-                        {sortByNameOrder === 1 && (
-                          <TiArrowSortedUp
-                            onClick={() => {
-                              setTimeout(() => {
-                                refetch();
-                              }, 300);
-                              handleSortByName(1, filteredItems);
-                              setSortByNameOrder(2);
-                              setSortByPriceOrder(0);
-                            }}
-                            style={{ marginTop: '4px' }}
-                            size={'20px'}
-                          />
-                        )}
-                        {sortByNameOrder === 2 && (
-                          <TiArrowSortedDown
-                            onClick={() => {
-                              setTimeout(() => {
-                                refetch();
-                              }, 300);
-                              handleSortByName(2, filteredItems);
-                              setSortByNameOrder(0);
-                              setSortByPriceOrder(0);
-                            }}
-                            style={{ marginTop: '4px' }}
-                            size={'20px'}
-                          />
-                        )}
-                      </Box>
-                    </Table.ColumnHeader>
-                    <Table.ColumnHeader
-                      textStyle={'2xl'}
-                      style={{ color: '#71717a' }}
-                      borderBottomColor={'bg'}
-                      textAlign="end"
-                    >
-                      <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="flex-end"
-                        gap={2}
-                      >
-                        Price
-                        {sortByPriceOrder === 0 && (
-                          <TiArrowUnsorted
-                            onClick={() => {
-                              setTimeout(() => {
-                                refetch();
-                              }, 300);
-                              handleSortByPrice(0, filteredItems);
-                              setSortByPriceOrder(1);
-                              setSortByNameOrder(0);
-                            }}
-                            style={{ marginTop: '4px' }}
-                            size={'20px'}
-                          />
-                        )}
-                        {sortByPriceOrder === 1 && (
-                          <TiArrowSortedUp
-                            onClick={() => {
-                              setTimeout(() => {
-                                refetch();
-                              }, 300);
-                              handleSortByPrice(1, filteredItems);
-                              setSortByPriceOrder(2);
-                              setSortByNameOrder(0);
-                            }}
-                            style={{ marginTop: '4px' }}
-                            size={'20px'}
-                          />
-                        )}
-                        {sortByPriceOrder === 2 && (
-                          <TiArrowSortedDown
-                            onClick={() => {
-                              setTimeout(() => {
-                                refetch();
-                              }, 300);
-                              handleSortByPrice(2, filteredItems);
-                              setSortByPriceOrder(0);
-                              setSortByNameOrder(0);
-                            }}
-                            style={{ marginTop: '4px' }}
-                            size={'20px'}
-                          />
-                        )}
-                      </Box>
-                    </Table.ColumnHeader>
-                  </Table.Row>
-                </Table.Header>
-                <RowDetails visibleItems={visibleItems} handlers={handlers} />
-              </Table.Root>
-            </Stack>
-            <Pagination.Root
-              count={filteredItems.length}
-              pageSize={pageSize}
-              page={page}
-              onPageChange={(e) => setPage(e.page)}
-            >
-              <ButtonGroup variant="ghost" size="sm">
-                <Pagination.PrevTrigger asChild>
-                  <IconButton>
-                    <HiChevronLeft />
-                  </IconButton>
-                </Pagination.PrevTrigger>
-
-                <Pagination.Items
-                  render={(page) => (
-                    <IconButton
-                      variant={{ base: 'ghost', _selected: 'outline' }}
-                    >
-                      {page.value}
-                    </IconButton>
-                  )}
+    <Theme appearance={darkMode ? 'dark' : 'light'}>
+      <div className="content">
+        <Box textAlign="center" pt="30vh" textStyle="body">
+          <VStack gap="8">
+            <div style={{ width: '40%', minWidth: '410px' }}>
+              {isMobile ? (
+                <Heading color={'gray.600'} textAlign={'start'} size="sm">
+                  Psst! You can swipe left and right in mobile
+                </Heading>
+              ) : (
+                <></>
+              )}
+              <Box display="flex" alignItems="center" gap={2}>
+                <Input
+                  size={'2xl'}
+                  textStyle={'2xl'}
+                  placeholder="Type here..."
+                  value={searchTerm}
+                  onChange={handleSearch}
                 />
+                <Box
+                  as="button"
+                  minWidth={'64px'}
+                  height={'64px'}
+                  onClick={() => {
+                    refetch();
+                  }}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  borderRadius="md"
+                  _hover={{ bg: darkMode ? '#18181b' : '#f4f4f5' }}
+                >
+                  <TiRefresh style={{ fontSize: '40px' }} />
+                </Box>
+                <Box
+                  as="button"
+                  minWidth={'64px'}
+                  height={'64px'}
+                  onClick={() => {
+                    setDarkMode(!darkMode);
+                  }}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  borderRadius="md"
+                  _hover={{ bg: darkMode ? '#18181b' : '#f4f4f5' }}
+                >
+                  {darkMode ? (
+                    <HiOutlineLightBulb style={{ fontSize: '30px' }} />
+                  ) : (
+                    <MdOutlineLightbulb style={{ fontSize: '26px' }} />
+                  )}
+                </Box>
+              </Box>
+              <Stack gap="10">
+                <Table.Root key={'lg'} size={'lg'}>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.ColumnHeader
+                        textStyle={'2xl'}
+                        style={{ color: '#71717a' }}
+                        borderBottomColor={'bg'}
+                      >
+                        <Box display="flex" alignItems="center" gap={2}>
+                          Name
+                          {sortByNameOrder === 0 && (
+                            <TiArrowUnsorted
+                              onClick={() => {
+                                setTimeout(() => {
+                                  refetch();
+                                }, 300);
+                                handleSortByName(0, filteredItems);
+                                setSortByNameOrder(1);
+                                setSortByPriceOrder(0);
+                              }}
+                              style={{ marginTop: '4px' }}
+                              size={'20px'}
+                            />
+                          )}
+                          {sortByNameOrder === 1 && (
+                            <TiArrowSortedUp
+                              onClick={() => {
+                                setTimeout(() => {
+                                  refetch();
+                                }, 300);
+                                handleSortByName(1, filteredItems);
+                                setSortByNameOrder(2);
+                                setSortByPriceOrder(0);
+                              }}
+                              style={{ marginTop: '4px' }}
+                              size={'20px'}
+                            />
+                          )}
+                          {sortByNameOrder === 2 && (
+                            <TiArrowSortedDown
+                              onClick={() => {
+                                setTimeout(() => {
+                                  refetch();
+                                }, 300);
+                                handleSortByName(2, filteredItems);
+                                setSortByNameOrder(0);
+                                setSortByPriceOrder(0);
+                              }}
+                              style={{ marginTop: '4px' }}
+                              size={'20px'}
+                            />
+                          )}
+                        </Box>
+                      </Table.ColumnHeader>
+                      <Table.ColumnHeader
+                        textStyle={'2xl'}
+                        style={{ color: '#71717a' }}
+                        borderBottomColor={'bg'}
+                        textAlign="end"
+                      >
+                        <Box
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="flex-end"
+                          gap={2}
+                        >
+                          Price
+                          {sortByPriceOrder === 0 && (
+                            <TiArrowUnsorted
+                              onClick={() => {
+                                setTimeout(() => {
+                                  refetch();
+                                }, 300);
+                                handleSortByPrice(0, filteredItems);
+                                setSortByPriceOrder(1);
+                                setSortByNameOrder(0);
+                              }}
+                              style={{ marginTop: '4px' }}
+                              size={'20px'}
+                            />
+                          )}
+                          {sortByPriceOrder === 1 && (
+                            <TiArrowSortedUp
+                              onClick={() => {
+                                setTimeout(() => {
+                                  refetch();
+                                }, 300);
+                                handleSortByPrice(1, filteredItems);
+                                setSortByPriceOrder(2);
+                                setSortByNameOrder(0);
+                              }}
+                              style={{ marginTop: '4px' }}
+                              size={'20px'}
+                            />
+                          )}
+                          {sortByPriceOrder === 2 && (
+                            <TiArrowSortedDown
+                              onClick={() => {
+                                setTimeout(() => {
+                                  refetch();
+                                }, 300);
+                                handleSortByPrice(2, filteredItems);
+                                setSortByPriceOrder(0);
+                                setSortByNameOrder(0);
+                              }}
+                              style={{ marginTop: '4px' }}
+                              size={'20px'}
+                            />
+                          )}
+                        </Box>
+                      </Table.ColumnHeader>
+                    </Table.Row>
+                  </Table.Header>
+                  <RowDetails visibleItems={visibleItems} handlers={handlers} />
+                </Table.Root>
+              </Stack>
+              <Pagination.Root
+                count={filteredItems.length}
+                pageSize={pageSize}
+                page={page}
+                onPageChange={(e) => setPage(e.page)}
+              >
+                <ButtonGroup variant="ghost" size="sm">
+                  <Pagination.PrevTrigger asChild>
+                    <IconButton>
+                      <HiChevronLeft />
+                    </IconButton>
+                  </Pagination.PrevTrigger>
 
-                <Pagination.NextTrigger asChild>
-                  <IconButton>
-                    <HiChevronRight />
-                  </IconButton>
-                </Pagination.NextTrigger>
-              </ButtonGroup>
-            </Pagination.Root>
-          </div>
-        </VStack>
-      </Box>
-    </div>
+                  <Pagination.Items
+                    render={(page) => (
+                      <IconButton
+                        variant={{ base: 'ghost', _selected: 'outline' }}
+                      >
+                        {page.value}
+                      </IconButton>
+                    )}
+                  />
+
+                  <Pagination.NextTrigger asChild>
+                    <IconButton>
+                      <HiChevronRight />
+                    </IconButton>
+                  </Pagination.NextTrigger>
+                </ButtonGroup>
+              </Pagination.Root>
+            </div>
+          </VStack>
+        </Box>
+      </div>
+    </Theme>
   );
 };
 
