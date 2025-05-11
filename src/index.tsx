@@ -29,6 +29,7 @@ const textStyles = defineTextStyles({
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
+  document.title = "Crypto Market Data"; // Set the new title
   const root = ReactDOM.createRoot(rootEl);
 
   const config = defineConfig({
