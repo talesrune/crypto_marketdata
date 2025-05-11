@@ -26,6 +26,7 @@ import { MdOutlineLightbulb } from 'react-icons/md';
 import { HiOutlineLightBulb } from 'react-icons/hi';
 import { useSwipeable } from 'react-swipeable';
 import { Theme } from '@chakra-ui/react';
+import { ThemeProvider } from 'next-themes';
 
 const App = () => {
   // const queryClient = useQueryClient()
@@ -193,13 +194,18 @@ const App = () => {
   }, [page]);
 
   return (
-    <Theme appearance={darkMode ? 'dark' : 'light'}>
+    <ThemeProvider attribute="class" forcedTheme={darkMode ? 'dark' : 'light'}>
       <div className="content">
         <Box textAlign="center" pt="30vh" textStyle="body">
           <VStack gap="8">
             <div style={{ width: '40%', minWidth: '410px' }}>
               {isMobile ? (
-                <Heading color={'gray.600'} fontFamily={'Outfit'} textAlign={'start'} size="sm">
+                <Heading
+                  color={'gray.600'}
+                  fontFamily={'Outfit'}
+                  textAlign={'start'}
+                  size="sm"
+                >
                   Psst! You can swipe left and right in mobile
                 </Heading>
               ) : (
@@ -399,7 +405,7 @@ const App = () => {
           </VStack>
         </Box>
       </div>
-    </Theme>
+    </ThemeProvider>
   );
 };
 
